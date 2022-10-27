@@ -26,7 +26,11 @@ output = open(args["index"], "w")
 for imagePath in glob.glob(args["dataset"] + "/*.jpg"):
 	# extract the image ID (i.e. the unique filename) from the image
 	# path and load the image itself
-	imageID = imagePath[imagePath.rfind("/") + 1:]
+
+    # imageID = imagePath[imagePath.rfind("/") + 1:]
+    # For Windows system
+    # https://stackoverflow.com/questions/27953069/opencv-error-215size-width0-size-height0-in-function-imshow
+	imageID = imagePath[imagePath.rfind("\\") + 1:]
 	image = cv2.imread(imagePath)
 	# describe the image
 	features = cd.describe(image)
